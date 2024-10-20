@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  # Please read Docker compose documentation to understand the project deployment
+  # It uses the Dockerfile in the backend directory
+  # It maps the 3000 port of the container to the 3000 port of the host machine
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  # Please read Docker compose documentation to understand the project deployment
+  # It uses the Dockerfile in the backend directory
+  # It maps the 8080 port of the container to the 8080 port of the host machine
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - GO_ENV=development
+      - DB_HOST=db
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=gameclubdb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:
+
+networks:
+  default:
+    external:
+      name: gameclub-web
