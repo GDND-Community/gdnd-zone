@@ -2,7 +2,7 @@
 interface Props {
 	title: string;
 }
-
+import Header from '../components/Header.astro';
 const { title } = Astro.props;
 ---
 
@@ -16,7 +16,8 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="bg-[#040E19]">
+	
 		<slot />
 	</body>
 </html>
