@@ -1,41 +1,57 @@
 ---
+
+
 import { Image } from "astro:assets";
 
-const calendar = [
-    { day: 14, name: "Monday", width: "1.6em", height: "2.2em", background: "#1F6DCC90", nameweight:"7px" ,dayweight:"10px",textcolor:"#FFFFFF" },
-    { day: 15, name: "Tuesday", width: "1.6em", height: "2.2em"  , nameweight:"5px",dayweight:"8px",textcolor:"#CBCBCBFF"},
-    { day: 16, name: "Wednesday", width: "1.6em", height: "2.2em" , nameweight:"5px",dayweight:"8px",textcolor:"#CBCBCBFF"},
-    { day: 17, name: "Thursday", width: "1.6em", height: "2.2em", nameweight:"5px" ,dayweight:"8px",textcolor:"#CBCBCBFF"},
-    { day: 18, name: "Friday", width: "1.6em", height: "2.2em" , nameweight:"5px",dayweight:"8px",textcolor:"#CBCBCBFF"},
-    { day: 19, name: "Saturday", width: "1.6em", height: "2.2em" , nameweight:"5px",dayweight:"8px",textcolor:"#CBCBCBFF"},
-    { day: 20, name: "Sunday", width: "1.6em", height: "2.2em", nameweight:"5px" ,dayweight:"8px",textcolor:"#CBCBCBFF"},
-];
+const generateNext6Days = () => {
+    const daysArray = [];
+    const today = new Date();
+
+    for (let i = 0; i < 6; i++) {
+        const nextDay = new Date(today);
+        nextDay.setDate(today.getDate() + i);
+
+        daysArray.push({
+            day: nextDay.getDate(),
+            name: nextDay.toLocaleDateString('en-GB', { weekday: 'long' }), 
+            width: "1.6em",
+            height: "2.2em",
+            background: i === 0 ? "#1F6DCC90" : "transparent",
+            nameweight: i === 0 ? "7px" : "5px",
+            dayweight: i === 0 ? "10px" : "8px",
+            textcolor: i === 0 ? "#FFFFFF" : "#CBCBCBFF"
+        });
+    }
+
+    return daysArray;
+};
+
+
+const calendar = generateNext6Days();
 ---
 
 <div class="p-4 flex flex-row justify-between items-center">
     <Image
-        src="/logo.png"
-        class="w-[3.2em] h-[3.2em]"
-        width={32}
-        height={32}
-        alt="Logo"
-    />
+    src="/logo.png"
+    class="w-[3.2em] h-[3.2em]"
+    width={32}
+    height={32}
+    alt="Logo"
+/>
 
     <div class="flex gap-1 flex-row items-center">
-        {
-            calendar.map(({ day, name, width, height , background,nameweight,dayweight,textcolor}, index) => (
-                <div
-                    class="rounded-[0.300em] "
-                    style={`width: ${width}; height: ${height}; background: ${background}`}
-                >
-                    <div class="text-[0.7em] flex flex-col h-full justify-center text-center">
-                        <h2 class="text-white font-medium" style={` font-size: ${dayweight}`}>{day}</h2>
-                        <h3 class="text-gray-300 font-medium  " style={`font-size: ${nameweight}; color: ${textcolor}`}>
-                            {name.slice(0, 3)}
-                        </h3>
-                    </div>
+        {calendar.map(({ day, name, width, height, background, nameweight, dayweight, textcolor }) => (
+            <div
+                class="rounded-[0.300em]"
+                style={`width: ${width}; height: ${height}; background: ${background}`}
+            >
+                <div class="text-[0.7em] flex flex-col h-full justify-center text-center">
+                    <h2 class="text-white font-medium" style={`font-size: ${dayweight}`}>{day}</h2>
+                    <h3 class="font-medium" style={`font-size: ${nameweight}; color: ${textcolor}`}>
+                        {name.slice(0, 3)}
+                    </h3>
                 </div>
-            ))
-        }
+            </div>
+        ))}
     </div>
 </div>
