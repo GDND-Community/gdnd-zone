@@ -1,18 +1,24 @@
 ---
-
 import { Image } from "astro:assets";
 
+interface Props {
+  src?: string;
+  alt?: string;
+}
+
+const { src = "/gamedev.png", alt = "Game Development Banner" } = Astro.props;
 ---
 
-
-
-<div class="mt-4 w-full ">
+<div class="mt-4 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="relative w-full h-0 pb-[56.25%] sm:pb-[40%] lg:pb-[30%]">
     <Image
-    src="/gamedev.png"
-    class="w-full h-[10em] rounded-lg opacity-70"
-    width={40}
-    height={40}
-    alt="Image"
+      src={src}
+      class="absolute inset-0 w-full h-full object-cover rounded-lg opacity-70 transition-opacity hover:opacity-100"
+      width={1200}
+      height={600}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
     />
-
+  </div>
 </div>
