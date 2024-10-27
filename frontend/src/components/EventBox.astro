@@ -10,19 +10,19 @@ const {
 } = Astro.props;
 ---
 
-<div class="mt-4 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div class="flex flex-row rounded-md min-h-[2.5rem] sm:min-h-[3rem] w-full max-w-3xl mx-auto">
-    <div class="bg-[#3f1fcc60] rounded-l-xl w-1/5 sm:w-1/6 flex items-center justify-center">
+<div class="mt-4 w-full max-w-6xl mx-auto lg:mx-0 px-4 sm:px-6 lg:px-8 lg:max-w-full ">
+  <div class="flex flex-row rounded-sm min-h-[2.5rem] sm:min-h-[3rem] w-full max-w-3xl mx-auto">
+    <div class="bg-[#3f1fcc60] rounded-l-md w-1/5 sm:w-1/6 flex items-center justify-center">
       <h2 class="text-center text-white font-medium font-mono text-md">
         {eventTitle}
       </h2>
     </div>
-    <div class="flex flex-row items-center justify-between px-4 py-2 text-center bg-gradient-to-r from-[#3252bb70] via-[#1E1E1E] to-[#1E1E1E] rounded-r-xl flex-grow">
+    <div class="flex flex-row items-center justify-between px-4 py-2 text-center bg-gradient-to-r from-[#3252bb70] via-[#1E1E1E] to-[#1E1E1E] rounded-r-m flex-grow">
       <h2 class="text-white font-normal text-xs sm:text-sm mr-2 flex-grow text-left">
         {eventDescription}
       </h2>
       <button 
-        class="cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3f1fcc60] rounded-full p-1"
+        class="cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3f1fcc60] rounded-lg p-1"
         aria-label="View event details"
       >
         <svg 
