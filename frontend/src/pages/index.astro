@@ -1,24 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import EventBox from '../components/EventBox.astro'
-import HomeImage from '../components/HomeImage.astro'
-import Events from '../components/sections/Events.astro'
-import Card from '../components/client/Card.tsx'
-
-const formattedDate = new Date("10 Jan 2024").toLocaleDateString('tr-TR', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+import HomeImage from '../components/HomeImage.astro';
+import Events from '../components/sections/Events.astro';
+import About from '../components/sections/About.astro';
+import Hero from '../components/client/Hero';
 ---
 
 <Layout title="Welcome to Astro.">
-	<Header/>
-	<EventBox />
-	<HomeImage/>
-	<main class="flex items-center justify-center flex-col space-y-4">
+	
+	
+		
+		<Hero client:only="solid-js"/>
 		<Events/>
+		<About/>
 	</main>
 </Layout>
 
