@@ -14,6 +14,9 @@ Our repository is organized into the following main directories:
 
 The frontend is built using modern web technologies to provide an engaging user experience for our gaming community.
 
+Frontend project vulns:
+[![Known Vulnerabilities](https://snyk.io/test/github/your-username/your-private-repo-name/badge.svg)](https://snyk.io/test/github/your-username/your-private-repo-name)
+
 ### Tech Stack:
 
 - AstroJS for general usage
