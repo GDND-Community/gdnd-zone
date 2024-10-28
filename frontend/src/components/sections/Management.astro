@@ -1,0 +1,24 @@
+---
+interface Manager {
+    name: string;
+    role: string;
+    image: string;
+}
+
+const Managers: Manager[] = [
+    {name: "John Doe", role: "CEO", image: "/john-doe.jpg"},
+    {name: "Jane Doe", role: "CTO", image: "/jane-doe.jpg"},
+    {name: "John Smith", role: "CFO", image: "/john-smith.jpg"},
+    {name: "Jane Smith", role: "COO", image: "/jane-smith.jpg"},
+];
+---
+
+{
+    Managers.map(m => {
+        <div>
+            <img src={m.image} alt={m.name} />
+            <h2>{m.name}</h2>
+            <h3>{m.role}</h3>
+        </div>
+    })
+}

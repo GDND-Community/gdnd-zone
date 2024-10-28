@@ -1,62 +1,83 @@
 ---
 import { Image } from "astro:assets";
+import Notification from "./sections/Notification.astro";
+import Navbar from "./client/Navbar";
 
+interface Day {
+  day: number;
+  name: string;
+  isToday: boolean;
+}
 const generateNext6Days = () => {
-    const daysArray = [];
-    const today = new Date();
+  const daysArray: Day[] = [];
+  const today = new Date();
 
-    for (let i = 0; i < 6; i++) {
-        const nextDay = new Date(today);
-        nextDay.setDate(today.getDate() + i);
+  Array.from(Array(7).keys()).forEach((i) => {
+    const nextDay = new Date(today);
+    nextDay.setDate(today.getDate() + i);
 
-        daysArray.push({
-            day: nextDay.getDate(),
-            name: nextDay.toLocaleDateString('en-GB', { weekday: 'long' }),
-            isToday: i === 0
-        });
-    }
+    daysArray.push({
+      day: nextDay.getDate(),
+      name: nextDay.toLocaleDateString("en-GB", { weekday: "long" }),
+      isToday: i === 0,
+    });
+  });
 
-    return daysArray;
+  return daysArray;
 };
 
 const calendar = generateNext6Days();
 ---
 
-<div class="p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-    <Image
+<div class="p-4 flex flex-col lg:flex-row justify-between items-center gap-4">
+  <div class="flex justify-between lg:justify-start lg:gap-4 items-center w-full lg:w-auto">
+    
+      <Image
         src="/logo.png"
         class="w-16 h-16 sm:w-20 sm:h-20"
         width={80}
         height={80}
         alt="Logo"
-    />
+      />
+      <Notification title="sample" />
 
-    <div class="flex gap-2 flex-row items-center overflow-x-auto w-full sm:w-auto">
-        {calendar.map(({ day, name, isToday }) => (
-            <div
-                class:list={[
-                    "rounded-lg flex-shrink-0",
-                    "w-14 h-20 sm:w-16 sm:h-24",
-                    { "bg-[#1F6DCC90]": isToday }
-                ]}
+    <Navbar client:only="solid-js" />
+  </div>
+
+  <div
+    class="flex gap-2 flex-row items-center overflow-x-auto w-full sm:w-auto"
+  >
+    {
+      calendar.map(({ day, name, isToday }) => (
+        <div
+          class:list={[
+            "rounded-lg flex-shrink-0",
+            "w-14 h-24",
+            { "bg-[#1F6DCC90]": isToday },
+          ]}
+        >
+          <div class="flex flex-col h-full justify-center text-center">
+            <h2
+              class:list={[
+                "text-white font-medium font-mono",
+                " text-xl lg:text-2xl",
+                { "font-bold": isToday },
+              ]}
             >
-                <div class="flex flex-col h-full justify-center text-center">
-                    <h2 class:list={[
-                        "text-white font-medium",
-                        "text-2xl sm:text-3xl",
-                        { "font-bold": isToday }
-                    ]}>
-                        {day}
-                    </h2>
-                    <h3 class:list={[
-                        "font-medium",
-                        "text-sm sm:text-base",
-                        { "text-white": isToday, "text-[#CBCBCBFF]": !isToday }
-                    ]}>
-                        {name.slice(0, 3)}
-                    </h3>
-                </div>
-            </div>
-        ))}
-    </div>
+              {day}
+            </h2>
+            <h3
+              class:list={[
+                "font-medium",
+                "text-sm sm:text-base",
+                { "text-white": isToday, "text-[#CBCBCBFF]": !isToday },
+              ]}
+            >
+              {name.slice(0, 3)}
+            </h3>
+          </div>
+        </div>
+      ))
+    }
+  </div>
 </div>
