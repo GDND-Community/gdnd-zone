@@ -1,18 +1,6 @@
 import { createSignal, For } from 'solid-js';
 import type { Component } from 'solid-js';
-import Card from './Card';
-
-interface CardData {
-  id: string;
-  title: string;
-  date: string;
-  type: string;
-  currentParticipants: number;
-  maxParticipants: number;
-  backgroundImage: string;
-  startDate: string;
-  endDate: string;
-}
+import CardContainer from './CardContainer';
 
 const CardList: Component = () => {
   const [cards] = createSignal<CardData[]>([
@@ -41,7 +29,7 @@ const CardList: Component = () => {
     {
       id: '3',
       title: 'Game Jam 2025',
-      date: '25 MAY 2025',
+      date: '25 May 2025',
       type: 'GAMEJAM',
       currentParticipants: 42,
       maxParticipants: 100,
@@ -51,11 +39,17 @@ const CardList: Component = () => {
     }
   ]);
 
+  const [isLoading, setIsLoading] = createSignal(true);
+  setTimeout(() => setIsLoading(false), 2000);
+
   return (
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
       <For each={cards()}>
         {(card) => (
-          <Card {...card} />
+          <CardContainer 
+            loading={isLoading()} 
+            {...card}
+          />
         )}
       </For>
     </div>

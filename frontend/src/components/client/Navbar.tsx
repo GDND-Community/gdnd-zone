@@ -4,6 +4,7 @@ const Navbar: Component = () => {
   return (
     <nav class="fixed md:static bottom-0 left-0 right-0 z-50 md:z-auto">
       <div class="md:static w-full md:w-auto">
+    
         <div class="bg-[#161B22]/80 md:bg-transparent backdrop-blur-lg md:backdrop-blur-none border-t md:border border-white/10 md:border-none px-4 py-3">
           <ul class="flex items-center justify-around md:justify-center gap-8 max-w-screen-lg mx-auto">
             <li>
@@ -35,6 +36,7 @@ const Navbar: Component = () => {
                 <span class="text-xs md:text-sm">Contact</span>
               </a>
             </li>
+           
           </ul>
         </div>
       </div>

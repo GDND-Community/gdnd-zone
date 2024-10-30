@@ -8,6 +8,7 @@ interface Day {
   name: string;
   isToday: boolean;
 }
+
 const generateNext6Days = () => {
   const daysArray: Day[] = [];
   const today = new Date();
@@ -28,10 +29,9 @@ const generateNext6Days = () => {
 
 const calendar = generateNext6Days();
 ---
-
-<div class="p-4 flex flex-col lg:flex-row justify-between items-center gap-4">
-  <div class="flex justify-between lg:justify-start lg:gap-4 items-center w-full lg:w-auto">
-    
+<div class="p-4  flex flex-col lg:flex-row justify-between items-center gap-4 lg:max-w-6xl mx-auto lg:px-8">
+  <div class="flex w-full  justify-between lg:justify-center lg:w-full items-center gap-4">
+    <div class="flex items-center gap-4">
       <Image
         src="/logo.png"
         class="w-16 h-16 sm:w-20 sm:h-20"
@@ -39,14 +39,24 @@ const calendar = generateNext6Days();
         height={80}
         alt="Logo"
       />
-      <Notification title="sample" />
-
-    <Navbar client:only="solid-js" />
+      
+      {/* Notification button */}
+      <button class="flex items-center gap-1 text-gray-400 hover:text-purple-400 transition-colors">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" 
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+       
+      </button>
+    </div>
+    
+    <div class="lg:flex lg:justify-center lg:w-full">
+      <Navbar client:only="solid-js" />
+    </div>
   </div>
+  
 
-  <div
-    class="flex gap-2 flex-row items-center overflow-x-auto w-full sm:w-auto"
-  >
+  <div class="flex gap-2 flex-row items-center overflow-x-auto w-full sm:w-auto">
     {
       calendar.map(({ day, name, isToday }) => (
         <div

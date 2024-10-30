@@ -3255,6 +3255,11 @@ solid-js@^1.9.3:
     seroval "^1.1.0"
     seroval-plugins "^1.1.0"
 
+solid-loading-skeleton@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/solid-loading-skeleton/-/solid-loading-skeleton-1.0.0.tgz#4e735b58c3f22d8daf4ce7022f1874fc12ae1fc8"
+  integrity sha512-02hYEsbuJOoJtd1F6hVvqhTn3o8Sbr8qQHjbGeGGC3hbeiZSoToVhMgqEeEQZTVgkd/mRx5MXmeaLg/F1HjXRQ==
+
 solid-refresh@^0.6.3:
   version "0.6.3"
   resolved "https://registry.npmjs.org/solid-refresh/-/solid-refresh-0.6.3.tgz"
